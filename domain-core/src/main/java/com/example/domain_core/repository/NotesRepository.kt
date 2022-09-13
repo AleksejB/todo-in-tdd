@@ -4,4 +4,5 @@ import com.example.domain_core.model.Note
 
 interface NotesRepository {
     suspend fun getNoteById(noteId: Int): Note?
+    suspend fun getCombinedNoteTextFromLocalAndRemote(noteId: Int): String?
 }

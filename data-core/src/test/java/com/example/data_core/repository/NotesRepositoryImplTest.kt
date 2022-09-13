@@ -66,7 +66,26 @@ class NotesRepositoryImplTest {
     }
 
     @Test
-    fun getNoteById_invalidNoteId_returns
+    fun getCombinedNoteTextFromLocalAndRemote_validNoteId_sameNoteTextFromLocalAndRemoteSources_returnsOneText() {
+        runTest {
+            //Given - notesRepository
+            //When
+            val text = notesRepository.getCombinedNoteTextFromLocalAndRemote(0)
+            //Then
+            assertEquals("note1", text)
+        }
+    }
+
+    @Test
+    fun getCombinedNoteTextFromLocalAndRemote_validNoteId_differentNoteTextFromLocalAndRemote_returnsCombinedText() {
+        runTest {
+            //Given - notesRepository
+            //When
+            val text = notesRepository.getCombinedNoteTextFromLocalAndRemote(1)
+            //Then
+            assertEquals("note1remoteNote1", text)
+        }
+    }
 
 
 }
