@@ -1,29 +1,29 @@
 package com.example.data_core.datasource
 
-import com.example.domain_core.datasource.NotesRemoteDataSource
-import com.example.domain_core.model.Note
+import com.example.domain_core.datasource.TodoNotesRemoteDataSource
+import com.example.domain_core.model.TodoNote
 import java.util.NoSuchElementException
 
-class MockNotesRemoteDataSource: NotesRemoteDataSource {
+class MockTodoNotesRemoteDataSource: TodoNotesRemoteDataSource {
 
-    private val notes = listOf<Note>(
-        Note(
+    private val todoNotes = listOf<TodoNote>(
+        TodoNote(
             id = 0,
             text = "note1"
         ),
-        Note(
+        TodoNote(
             id = 1,
             text = "remoteNote2"
         ),
-        Note(
+        TodoNote(
             id = 4,
             text = "remoteNote4"
         )
     )
 
-    override suspend fun getNoteByIdFromRemote(noteId: Int): Result<Note?> {
+    override suspend fun getNoteByIdFromRemote(noteId: Int): Result<TodoNote?> {
         return try {
-            val note = notes.first { it.id == noteId }
+            val note = todoNotes.first { it.id == noteId }
             Result.success(note)
         } catch (e: NoSuchElementException) {
             Result.failure(e)

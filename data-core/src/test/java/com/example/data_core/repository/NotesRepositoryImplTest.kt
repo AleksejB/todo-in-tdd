@@ -1,11 +1,11 @@
 package com.example.data_core.repository
 
-import com.example.data_core.datasource.MockNotesLocalDataSource
-import com.example.data_core.datasource.MockNotesLocalDataSourceEmpty
-import com.example.domain_core.model.Note
+import com.example.data_core.datasource.MockTodoNotesRemoteDataSource
+import com.example.data_core.datasource.MockTodoNotesLocalDataSource
+import com.example.data_core.datasource.MockTodoNotesLocalDataSourceEmpty
+import com.example.domain_core.model.TodoNote
 import com.example.domain_core.repository.NotesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
@@ -18,8 +18,9 @@ class NotesRepositoryImplTest {
 
     @Before
     fun setup() {
-        val notesLocalDataSource = MockNotesLocalDataSource()
-        notesRepository = NotesRepositoryImpl(notesLocalDataSource)
+        val notesLocalDataSource = MockTodoNotesLocalDataSource()
+        val notesRemoteDataSource = MockTodoNotesRemoteDataSource()
+        notesRepository = NotesRepositoryImpl(notesLocalDataSource, notesRemoteDataSource)
     }
 
     @Test
@@ -30,25 +31,19 @@ class NotesRepositoryImplTest {
             //When
             val note = notesRepository.getNoteById(0)
             //Then
-            assertEquals(Note(0, "note1"), note)
+            assertEquals(TodoNote(0, "note1"), note)
         }
     }
-
-    //Ok, this testing seems pointless and stupid. I am testing the logic in the mock data source
-    //instead of any production code
-    //Ill write db tests now instead, because then, I can do integration tests which will test something
-    //but then there are no unit tests which should be required to test the repository later in integration tests
-
-
 
     @Test
     fun getNoteById_noNoteExists_returnsNull() {
         runTest {
             //Given
-            val localDataSource = MockNotesLocalDataSourceEmpty()
-            val noteRepository = NotesRepositoryImpl(localDataSource)
+            val localDataSource = MockTodoNotesLocalDataSourceEmpty()
+            val remoteDataSource = MockTodoNotesRemoteDataSource()
+            val emptyNotesRepository = NotesRepositoryImpl(localDataSource, remoteDataSource)
             //When
-            val note = noteRepository.getNoteById(0)
+            val note = emptyNotesRepository.getNoteById(0)
             //Then
             assertEquals(null, note)
         }
@@ -66,7 +61,7 @@ class NotesRepositoryImplTest {
     }
 
     @Test
-    fun getCombinedNoteTextFromLocalAndRemote_validNoteId_sameNoteTextFromLocalAndRemoteSources_returnsOneText() {
+    fun getCombinedNoteTextFromLocalAndRemote_validNoteId_sameNoteTextFromLocalAndRemoteSources_returnsRemoteNoteText() {
         runTest {
             //Given - notesRepository
             //When
@@ -77,15 +72,23 @@ class NotesRepositoryImplTest {
     }
 
     @Test
-    fun getCombinedNoteTextFromLocalAndRemote_validNoteId_differentNoteTextFromLocalAndRemote_returnsCombinedText() {
+    fun getCombinedNoteTextFromLocalAndRemote_validTodoNoteId_differentNoteTextFromLocalAndRemote_returnsCombinedText() {
         runTest {
             //Given - notesRepository
             //When
             val text = notesRepository.getCombinedNoteTextFromLocalAndRemote(1)
             //Then
-            assertEquals("note1remoteNote1", text)
+            assertEquals("note2remoteNote2", text)
         }
     }
 
-
+    @Test
+    fun getCombinedNoteTextFromLocalAndRemote_nonExistentTodoNoteId_returnsNull() {
+        runTest {
+            //Given - notesRepository
+            //When
+            val noteText = notesRepository.getCombinedNoteTextFromLocalAndRemote(10)
+            assertEquals(null, noteText)
+        }
+    }
 }

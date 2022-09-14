@@ -1,8 +1,8 @@
 package com.example.domain_core.repository
 
-import com.example.domain_core.model.Note
+import com.example.domain_core.model.TodoNote
 
 interface NotesRepository {
-    suspend fun getNoteById(noteId: Int): Note?
+    suspend fun getNoteById(noteId: Int): TodoNote?
     suspend fun getCombinedNoteTextFromLocalAndRemote(noteId: Int): String?
 }
