@@ -15,6 +15,7 @@ class NotesRepositoryImpl constructor(
     }
 
     //This is not part of the app, and is purely for experimentation and learning tdd
+    //This is meant to be part of domain? No, it uses the data layer
     override suspend fun getCombinedNoteTextFromLocalAndRemote(todoNoteId: Int): String? {
         val localNote = todoNotesLocalDataSource.getTodoNoteById(todoNoteId)
         todoNotesRemoteDataSource.getNoteByIdFromRemote(todoNoteId).fold(

@@ -50,13 +50,38 @@ class TodoNoteDaoTest {
     }
 
     @Test
-    fun getTodoNoteById_nonExistentTodoNoteId_returnsNull() {
+    fun getTodoNoteById_nonExistentTodoNoteIdAndEmptyDb_returnsNull() {
         runTest {
             //Given - an empty db
             //When
             val note = todoNoteDao.getTodoNoteById(1)
             //Then
             assertTrue(note == null)
+        }
+    }
+
+    @Test
+    fun getTodoNoteById_nonExistentTodoNoteIdAndNotEmptyDb_returnsNull() {
+        runTest {
+            //Given
+            val todoNote = TodoNote(id = 0, text = "localNote0")
+            todoNoteDao.insertTodoNote(todoNote)
+            //Then
+            val note = todoNoteDao.getTodoNoteById(1)
+            //When
+            assertTrue(note == null)
+        }
+    }
+
+    @Test
+    fun getTodoNoteById_invalidTodoNoteIdAndNotEmptyDb_returns() {
+        runTest {
+            //Given
+            val todoNote = TodoNote(id = 0, text = "localNote0")
+            todoNoteDao.insertTodoNote(todoNote)
+            //Then
+            val note = todoNoteDao.insertTodoNote("abc")
+            //Benefits of statically typed languages?
         }
     }
 
