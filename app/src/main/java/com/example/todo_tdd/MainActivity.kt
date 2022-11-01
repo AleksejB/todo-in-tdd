@@ -10,21 +10,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.todo_tdd.ui.navigation.AppNavigation
+import com.example.todo_tdd.ui.navigation.main.MainApplicationContent
 import com.example.todo_tdd.ui.theme.Todo_tddTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            Todo_tddTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-
-                }
-            }
-        }
+        setContent { Todo_tddTheme { MainApplicationContent() } }
     }
 }
