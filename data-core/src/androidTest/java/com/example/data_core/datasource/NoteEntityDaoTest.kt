@@ -5,11 +5,9 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.data_core.database.TodoNoteDatabase
-import com.example.domain_core.model.TodoNote
+import com.example.data_core.database.entity.NoteEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
-import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -18,7 +16,7 @@ import org.junit.runner.RunWith
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
-class TodoNoteDaoTest {
+class NoteEntityDaoTest {
 
     private lateinit var database: TodoNoteDatabase
     private lateinit var todoNoteDao: TodoNoteDao
@@ -40,12 +38,12 @@ class TodoNoteDaoTest {
     fun getTodoNoteById_validId_returnsTodoNote() {
         runTest {
             //Given
-            val todoNote = TodoNote(id = 0, text = "localNote0")
-            todoNoteDao.insertTodoNote(todoNote = todoNote)
+            val noteEntity = NoteEntity(id = 0, text = "localNote0")
+            todoNoteDao.insertTodoNote(noteEntity = noteEntity)
             //When
             val note = todoNoteDao.getTodoNoteById(todoNoteId = 0)
             //Then
-            assertTrue(todoNote == note)
+            assertTrue(noteEntity == note)
         }
     }
 
@@ -64,8 +62,8 @@ class TodoNoteDaoTest {
     fun getTodoNoteById_nonExistentTodoNoteIdAndNotEmptyDb_returnsNull() {
         runTest {
             //Given
-            val todoNote = TodoNote(id = 0, text = "localNote0")
-            todoNoteDao.insertTodoNote(todoNote)
+            val noteEntity = NoteEntity(id = 0, text = "localNote0")
+            todoNoteDao.insertTodoNote(noteEntity)
             //Then
             val note = todoNoteDao.getTodoNoteById(1)
             //When
@@ -77,8 +75,8 @@ class TodoNoteDaoTest {
     fun getTodoNoteById_invalidTodoNoteIdAndNotEmptyDb_returns() {
         runTest {
             //Given
-            val todoNote = TodoNote(id = 0, text = "localNote0")
-            todoNoteDao.insertTodoNote(todoNote)
+            val noteEntity = NoteEntity(id = 0, text = "localNote0")
+            todoNoteDao.insertTodoNote(noteEntity)
             //Then
             val note = todoNoteDao.insertTodoNote("abc")
             //Benefits of statically typed languages?

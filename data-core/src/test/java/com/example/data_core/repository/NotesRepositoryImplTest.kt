@@ -3,7 +3,7 @@ package com.example.data_core.repository
 import com.example.data_core.datasource.MockTodoNotesRemoteDataSource
 import com.example.data_core.datasource.MockTodoNotesLocalDataSource
 import com.example.data_core.datasource.MockTodoNotesLocalDataSourceEmpty
-import com.example.domain_core.model.TodoNote
+import com.example.data_core.database.entity.NoteEntity
 import com.example.domain_core.repository.NotesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -32,7 +32,7 @@ class NotesRepositoryImplTest {
             //When
             val note = notesRepository.getNoteById(0)
             //Then
-            assertEquals(TodoNote(0, "note1"), note)
+            assertEquals(NoteEntity(0, "note1"), note)
         }
     }
 

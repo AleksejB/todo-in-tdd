@@ -20,7 +20,7 @@ internal fun AppNavigation(
         startDestination = Graph.Home.route
     ) {
         addHomeGraph {
-            addMainScreen()
+            addMainScreen(navController)
             addNoteScreen()
         }
     }

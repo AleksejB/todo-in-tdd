@@ -1,9 +1,11 @@
 package com.example.domain_core.datasource
 
-import com.example.domain_core.model.TodoNote
-
 interface TodoNotesLocalDataSource {
-    suspend fun getTodoNoteById(todoNoteId: Int): TodoNote?
-    suspend fun insertTodoNote(todoNote: TodoNote)
-    suspend fun deleteTodoNote(todoNote: TodoNote)
+    suspend fun getTodoNoteById(noteId: Int): NoteEntity?
+    suspend fun insertTodoNote(note: NoteEntity)
+    suspend fun deleteTodoNote(note: NoteEntity)
+
+    //domain should be able to map to entity and back :
+    //  - entity in domain
+    //  - interfaces for domain models
 }

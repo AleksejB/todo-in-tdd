@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.data_core.datasource.TodoNoteDao
-import com.example.domain_core.model.TodoNote
+import com.example.data_core.database.entity.NoteEntity
 
-@Database(entities = [TodoNote::class], version = 1)
+@Database(entities = [NoteEntity::class], version = 1)
 abstract class TodoNoteDatabase: RoomDatabase() {
     abstract fun getTodoNoteDao(): TodoNoteDao
 

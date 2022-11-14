@@ -9,6 +9,6 @@ sealed class Screen(private val route: String) {
     fun createRoute(graph: Graph) = "${graph.route}/$route"
 
     object Main: Screen("main")
-    object Note: Screen("note")
+    object Note: Screen("note?noteId={noteId}")
 }
 

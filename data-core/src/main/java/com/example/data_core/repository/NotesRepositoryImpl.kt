@@ -2,7 +2,7 @@ package com.example.data_core.repository
 
 import com.example.domain_core.datasource.TodoNotesLocalDataSource
 import com.example.domain_core.datasource.TodoNotesRemoteDataSource
-import com.example.domain_core.model.TodoNote
+import com.example.data_core.database.entity.NoteEntity
 import com.example.domain_core.repository.NotesRepository
 
 class NotesRepositoryImpl constructor(
@@ -10,7 +10,7 @@ class NotesRepositoryImpl constructor(
     private val todoNotesRemoteDataSource: TodoNotesRemoteDataSource
 ): NotesRepository {
 
-    override suspend fun getNoteById(todoNoteId: Int): TodoNote? {
+    override suspend fun getNoteById(todoNoteId: Int): NoteEntity? {
         return todoNotesLocalDataSource.getTodoNoteById(todoNoteId)
     }
 

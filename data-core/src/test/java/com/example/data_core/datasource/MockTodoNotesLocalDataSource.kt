@@ -1,29 +1,29 @@
 package com.example.data_core.datasource
 
 import com.example.domain_core.datasource.TodoNotesLocalDataSource
-import com.example.domain_core.model.TodoNote
+import com.example.data_core.database.entity.NoteEntity
 import java.util.NoSuchElementException
 
 class MockTodoNotesLocalDataSource(): TodoNotesLocalDataSource {
 
-    private val todoNotes = listOf<TodoNote>(
-        TodoNote(
+    private val noteEntities = listOf<NoteEntity>(
+        NoteEntity(
             id = 0,
             text = "note1"
         ),
-        TodoNote(
+        NoteEntity(
             id = 1,
             text = "note2"
         ),
-        TodoNote(
+        NoteEntity(
             id = 2,
             text = "note3"
         )
     )
 
-    override suspend fun getTodoNoteById(noteId: Int): TodoNote? {
+    override suspend fun getTodoNoteById(noteId: Int): NoteEntity? {
         return try {
-            todoNotes.first { it.id == noteId }
+            noteEntities.first { it.id == noteId }
         } catch (e: NoSuchElementException) {
             null
         }
