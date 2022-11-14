@@ -1,11 +1,10 @@
 package com.example.domain_core.datasource
 
-interface TodoNotesLocalDataSource {
-    suspend fun getTodoNoteById(noteId: Int): NoteEntity?
-    suspend fun insertTodoNote(note: NoteEntity)
-    suspend fun deleteTodoNote(note: NoteEntity)
+import com.example.domain_core.model.Note
+import kotlinx.coroutines.flow.Flow
 
-    //domain should be able to map to entity and back :
-    //  - entity in domain
-    //  - interfaces for domain models
+interface TodoNotesLocalDataSource {
+    fun getNoteById(noteId: Int): Flow<Note?>
+    suspend fun insertNote(note: Note)
+    suspend fun deleteNote(note: Note)
 }

@@ -1,8 +1,10 @@
 package com.example.domain_core.repository
 
-import com.example.data_core.database.entity.TodoNote
+import com.example.domain_core.model.Note
 
 interface NotesRepository {
-    suspend fun getNoteById(noteId: Int): com.example.data_core.database.entity.TodoNote?
-    suspend fun getCombinedNoteTextFromLocalAndRemote(noteId: Int): String?
+    suspend fun getNoteById(noteId: Int): Note?
+
+    //This function is for experimentation with TDD
+//    suspend fun getCombinedNoteTextFromLocalAndRemote(noteId: Int): String?
 }

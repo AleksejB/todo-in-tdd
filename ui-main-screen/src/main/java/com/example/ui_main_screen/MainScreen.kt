@@ -3,10 +3,9 @@ package com.example.ui_main_screen
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -15,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.ui_core.R
-import com.example.ui_core.components.NoteItem
+import com.aleksejb.ui_core.components.NoteItem
+import com.aleksejb.ui_core.R
 
 @Composable
 fun MainScreen(
@@ -67,7 +66,7 @@ private fun MainScreenContent(
             onClick = { eventHandler(MainScreenEvents.OnNewNoteClicked) }
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.ic__5_icons_recipt),
+                painter = painterResource(id = R.drawable.ic_iconmonstr_plus_2),
                 contentDescription = null 
             )
         }

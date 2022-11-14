@@ -1,9 +1,9 @@
 package com.example.ui_main_screen
 
-import com.example.data_core.database.entity.TodoNote
+import com.example.domain_core.model.Note
 
 data class MainScreenState(
-    val notes: List<com.example.data_core.database.entity.TodoNote>
+    val notes: List<Note>
 ) {
     companion object {
         val Default = MainScreenState(

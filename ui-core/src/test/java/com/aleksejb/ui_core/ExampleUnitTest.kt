@@ -1,4 +1,4 @@
-package com.example.ui_core
+package com.aleksejb.ui_core
 
 import org.junit.Test
 

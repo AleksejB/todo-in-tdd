@@ -27,7 +27,7 @@ internal fun NavGraphBuilder.addNoteScreen() {
             navArgument("noteId") {
                 nullable = true
                 defaultValue = null
-                type = NavType.IntType
+                type = NavType.StringType
             }
         )
     ) {

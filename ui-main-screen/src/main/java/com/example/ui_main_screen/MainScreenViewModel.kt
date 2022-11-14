@@ -1,6 +1,6 @@
 package com.example.ui_main_screen
 
-import com.example.ui_core.baseviewmodel.MVIBaseViewModel
+import com.aleksejb.ui_core.viewmodel.MVIBaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
