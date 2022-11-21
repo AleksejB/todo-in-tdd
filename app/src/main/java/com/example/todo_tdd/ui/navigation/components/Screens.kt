@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.aleksejb.ui_note.NoteScreen
 import com.example.ui_main_screen.MainScreen
 
 internal fun NavGraphBuilder.addMainScreen(navController: NavController) {
@@ -20,7 +21,7 @@ internal fun NavGraphBuilder.addMainScreen(navController: NavController) {
     }
 }
 
-internal fun NavGraphBuilder.addNoteScreen() {
+internal fun NavGraphBuilder.addNoteScreen(navController: NavController) {
     composable(
         route = Screen.Note.createRoute(Graph.Home),
         arguments = listOf(
@@ -31,6 +32,6 @@ internal fun NavGraphBuilder.addNoteScreen() {
             }
         )
     ) {
-
+        NoteScreen { navController.navigateUp() }
     }
 }

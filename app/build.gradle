@@ -50,6 +50,7 @@ android {
 dependencies {
 
     implementation project(':ui-core')
+    implementation project(':ui-note')
     implementation project(':ui-main-screen')
     implementation project(':data-core')
     implementation project(':domain-core')

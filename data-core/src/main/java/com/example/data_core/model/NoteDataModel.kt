@@ -1,11 +1,9 @@
 package com.example.data_core.model
 
-import androidx.room.Entity
 import com.example.domain_core.model.Note
 import com.example.domain_core.model.NoteType
 
-//@Entity
-data class NoteEntity(
+data class NoteDataModel(
     override val id: Int,
     override val noteTitle: String,
     override val text: String,

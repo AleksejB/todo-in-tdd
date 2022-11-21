@@ -21,7 +21,7 @@ internal fun AppNavigation(
     ) {
         addHomeGraph {
             addMainScreen(navController)
-            addNoteScreen()
+            addNoteScreen(navController)
         }
     }
 }

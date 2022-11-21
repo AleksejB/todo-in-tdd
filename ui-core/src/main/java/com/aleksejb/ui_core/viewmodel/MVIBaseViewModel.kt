@@ -16,7 +16,7 @@ abstract class MVIBaseViewModel<State, Events, Effects>(): ViewModel() {
     private val _events: MutableSharedFlow<Events> = MutableSharedFlow()
     val events get() = _events.asSharedFlow()
 
-    private val _state: MutableStateFlow<State> = MutableStateFlow(createInitialState())
+    protected val _state: MutableStateFlow<State> = MutableStateFlow(createInitialState())
     val state get() = _state.asStateFlow()
 
     init {

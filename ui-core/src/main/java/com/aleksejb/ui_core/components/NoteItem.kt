@@ -1,5 +1,6 @@
 package com.aleksejb.ui_core.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -9,14 +10,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import com.aleksejb.ui_core.R
-import com.example.domain_core.model.Note
+import com.example.data_core.model.NoteDataModel
 
 @Composable
-fun NoteItem(note: Note) {
+fun NoteItem(
+    note: NoteDataModel,
+    onNoteClicked: (noteId: Int) -> Unit
+) {
     Column(
         modifier = Modifier
             .padding(horizontal = dimensionResource(R.dimen.padding_default))
             .fillMaxWidth()
+            .clickable { onNoteClicked(note.id) }
     ) {
         NoteTitleText(
             modifier = Modifier.padding(dimensionResource(R.dimen.padding_small)),
