@@ -18,9 +18,9 @@ class NotesRepositoryImpl @Inject constructor(
         return notesLocalDataSource.getNoteById(noteId).map { it?.toNoteDataModel() } //this doesnt handle what happens when the result is null
     }
 
-    override suspend fun getAllNotes(): Flow<List<NoteDataModel>?> {
+    override suspend fun getAllNotes(): Flow<List<NoteDataModel>> {
         return notesLocalDataSource.getAllNotes().map { listOfNotes ->
-            listOfNotes?.map { it.toNoteDataModel() }
+            listOfNotes.map { it.toNoteDataModel() }
         }
     }
 

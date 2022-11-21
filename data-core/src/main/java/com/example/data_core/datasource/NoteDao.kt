@@ -20,6 +20,6 @@ interface NoteDao: NotesLocalDataSource<NoteEntity> {
     override fun getNoteById(noteId: Int): Flow<NoteEntity?>
 
     @Query("SELECT * FROM todoNote")
-    override fun getAllNotes(): Flow<List<NoteEntity>?>
+    override fun getAllNotes(): Flow<List<NoteEntity>>
 
 }

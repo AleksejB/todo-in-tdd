@@ -32,10 +32,4 @@ class DataModule {
     fun provideNotesDao(db: TodoNoteDatabase): NoteDao {
         return db.noteDao()
     }
-
-//    @Provides
-//    @Singleton
-//    fun provideNotesLocalDataSource(noteDao: NoteDao): NotesLocalDataSource<Note> {
-//        return noteDao
-//    }
 }

@@ -23,7 +23,7 @@ class MainScreenViewModel @Inject constructor(
     fun onResume() {
         viewModelScope.launch {
             notesRepository.getAllNotes().collect {
-                updateNotesInState { copy(notes = it as List<NoteDataModel>) }
+                updateNotesInState { copy(notes = it) }
             }
         }
     }
@@ -39,6 +39,9 @@ class MainScreenViewModel @Inject constructor(
         }
     }
 
-    private fun updateNotesInState(action: MainScreenState.() -> Unit) = _state.value.action()
+    private fun updateNotesInState(action: MainScreenState.() -> MainScreenState) {
+        _state.value = _state.value.action()
+    }
+
 
 }

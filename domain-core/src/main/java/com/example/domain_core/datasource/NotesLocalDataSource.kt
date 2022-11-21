@@ -7,5 +7,5 @@ interface NotesLocalDataSource<T> {
     fun getNoteById(noteId: Int): Flow<T?>
     suspend fun insertNote(note: T)
     suspend fun deleteNote(note: T)
-    fun getAllNotes(): Flow<List<T>?>
+    fun getAllNotes(): Flow<List<T>>
 }
