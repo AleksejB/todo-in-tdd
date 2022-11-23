@@ -80,7 +80,6 @@ private fun NoteScreenContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp)
-                .background(color = Color.Blue)
         ) {
             Button(
                 modifier = Modifier

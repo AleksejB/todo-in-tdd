@@ -48,6 +48,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
@@ -80,7 +81,6 @@ dependencies {
     //Compose Navigation
 //    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
 
-    //ComposeTesting
-//    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
-//    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+//    ComposeTesting
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
 }

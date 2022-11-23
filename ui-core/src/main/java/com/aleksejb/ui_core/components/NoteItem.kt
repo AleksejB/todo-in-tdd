@@ -15,11 +15,12 @@ import com.example.domain_core.model.Note
 
 @Composable
 fun NoteItem(
+    modifier: Modifier = Modifier,
     note: Note,
     onNoteClicked: (noteId: Long) -> Unit
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clickable { onNoteClicked(note.id) }
     ) {

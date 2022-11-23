@@ -15,6 +15,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,6 +24,9 @@ import androidx.lifecycle.Lifecycle
 import com.aleksejb.ui_core.components.NoteItem
 import com.aleksejb.ui_core.R
 import com.aleksejb.ui_core.util.ComposableLifecycle
+import com.example.ui_main_screen.util.MainScreenTestingConstants.ADD_NOTE_FAB_TAG
+import com.example.ui_main_screen.util.MainScreenTestingConstants.NOTES_TITLE_TAG
+import com.example.ui_main_screen.util.MainScreenTestingConstants.NOTE_ITEM_TAG
 
 @Composable
 fun MainScreen(
@@ -58,7 +62,7 @@ fun MainScreen(
 }
 
 @Composable
-private fun MainScreenContent(
+fun MainScreenContent(
     state: MainScreenState,
     eventHandler: (MainScreenEvents) -> Unit
 ) {
@@ -73,7 +77,8 @@ private fun MainScreenContent(
             Text(
                 modifier = Modifier
                     .padding(top = dimensionResource(id = R.dimen.top_of_screen_offset))
-                    .padding(bottom = dimensionResource(id = R.dimen.notes_title_bottom_offset)),
+                    .padding(bottom = dimensionResource(id = R.dimen.notes_title_bottom_offset))
+                    .testTag(NOTES_TITLE_TAG),
                 text = stringResource(id = R.string.notes),
                 style = MaterialTheme.typography.h1
             )
@@ -82,7 +87,10 @@ private fun MainScreenContent(
                 modifier = Modifier.fillMaxSize()
             ) {
                 items(state.notes.size) { index ->
-                    NoteItem(note = state.notes[index]) {
+                    NoteItem(
+                        modifier = Modifier.testTag(NOTE_ITEM_TAG),
+                        note = state.notes[index]
+                    ) {
                         eventHandler(MainScreenEvents.OnNoteClicked(it))
                     }
                 }
@@ -90,7 +98,9 @@ private fun MainScreenContent(
         }
 
         FloatingActionButton(
-            modifier = Modifier.align(Alignment.BottomEnd),
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .testTag(ADD_NOTE_FAB_TAG),
             onClick = { eventHandler(MainScreenEvents.OnNewNoteClicked) }
         ) {
             Icon(
