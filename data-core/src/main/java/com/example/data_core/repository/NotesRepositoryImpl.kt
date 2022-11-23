@@ -3,6 +3,7 @@ package com.example.data_core.repository
 import com.example.data_core.database.entity.NoteEntity
 import com.example.data_core.model.NoteDataModel
 import com.example.data_core.util.toNoteDataModel
+import com.example.data_core.util.toNoteEntity
 import com.example.domain_core.datasource.NotesLocalDataSource
 import com.example.domain_core.model.Note
 import com.example.domain_core.repository.NotesRepository
@@ -14,14 +15,22 @@ class NotesRepositoryImpl @Inject constructor(
     private val notesLocalDataSource: NotesLocalDataSource<NoteEntity>
 ): NotesRepository {
 
-    override suspend fun getNoteById(noteId: Int): Flow<NoteDataModel?> {
-        return notesLocalDataSource.getNoteById(noteId).map { it?.toNoteDataModel() } //this doesnt handle what happens when the result is null
+    override suspend fun getNoteById(noteId: Long): Flow<NoteDataModel?> {
+        return notesLocalDataSource.getNoteById(noteId).map { it?.toNoteDataModel() }
     }
 
     override suspend fun getAllNotes(): Flow<List<NoteDataModel>> {
         return notesLocalDataSource.getAllNotes().map { listOfNotes ->
             listOfNotes.map { it.toNoteDataModel() }
         }
+    }
+
+    override suspend fun deleteNoteById(noteId: Long) {
+        notesLocalDataSource.deleteNoteById(noteId)
+    }
+
+    override suspend fun insertNote(note: Note): Long {
+        return notesLocalDataSource.insertNote(note.toNoteDataModel().toNoteEntity())
     }
 
 //    This is not part of the app, and is purely for experimentation and learning tdd

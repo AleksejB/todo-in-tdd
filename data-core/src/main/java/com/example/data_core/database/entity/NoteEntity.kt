@@ -7,7 +7,7 @@ import com.example.domain_core.model.NoteType
 
 @Entity(tableName = "todoNote")
 data class NoteEntity(
-    @PrimaryKey override val id: Int,
+    @PrimaryKey(autoGenerate = true) override val id: Long,
     override val noteTitle: String,
     override val text: String,
     override val type: NoteType

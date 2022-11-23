@@ -11,15 +11,15 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import com.aleksejb.ui_core.R
 import com.example.data_core.model.NoteDataModel
+import com.example.domain_core.model.Note
 
 @Composable
 fun NoteItem(
-    note: NoteDataModel,
-    onNoteClicked: (noteId: Int) -> Unit
+    note: Note,
+    onNoteClicked: (noteId: Long) -> Unit
 ) {
     Column(
         modifier = Modifier
-            .padding(horizontal = dimensionResource(R.dimen.padding_default))
             .fillMaxWidth()
             .clickable { onNoteClicked(note.id) }
     ) {

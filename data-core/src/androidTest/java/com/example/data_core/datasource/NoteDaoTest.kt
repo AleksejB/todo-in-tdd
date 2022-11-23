@@ -77,7 +77,7 @@ class NoteDaoTest {
     }
 
     @Test
-    fun getTodoNoteById_nonExistentNoteId_returnsNull() {
+    fun getNoteById_nonExistentNoteId_returnsNull() {
         runTest {
             //Given
             val noteEntity = NoteEntity(

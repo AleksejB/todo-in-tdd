@@ -4,16 +4,15 @@ import com.example.data_core.model.NoteDataModel
 import com.example.domain_core.model.NoteType
 
 data class NoteScreenState(
-    val note: NoteDataModel
+    val noteTitle: String,
+    val noteText: String,
+    val noteType: NoteType
 ) {
     companion object {
         val Default = NoteScreenState(
-            note = NoteDataModel(
-                id = 0,
-                noteTitle = "",
-                text = "",
-                type = NoteType.NOTE
-            )
+            noteTitle = "",
+            noteText = "",
+            noteType = NoteType.NOTE
         )
     }
 }

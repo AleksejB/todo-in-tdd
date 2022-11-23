@@ -1,23 +1,20 @@
 package com.example.data_core.datasource
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.data_core.database.entity.NoteEntity
 import com.example.domain_core.datasource.NotesLocalDataSource
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDao: NotesLocalDataSource<NoteEntity> {
-    @Insert
-    override suspend fun insertNote(note: NoteEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    override suspend fun insertNote(note: NoteEntity): Long
 
-    @Delete
-    override suspend fun deleteNote(note: NoteEntity)
+    @Query("DELETE FROM todoNote WHERE id = :noteId")
+    override suspend fun deleteNoteById(noteId: Long)
 
     @Query("SELECT * FROM todoNote WHERE id = :noteId")
-    override fun getNoteById(noteId: Int): Flow<NoteEntity?>
+    override fun getNoteById(noteId: Long): Flow<NoteEntity?>
 
     @Query("SELECT * FROM todoNote")
     override fun getAllNotes(): Flow<List<NoteEntity>>

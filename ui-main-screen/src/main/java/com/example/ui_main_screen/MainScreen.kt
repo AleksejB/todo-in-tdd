@@ -27,7 +27,7 @@ import com.aleksejb.ui_core.util.ComposableLifecycle
 @Composable
 fun MainScreen(
     navigateToNewNote: () -> Unit,
-    navigateToNote: (noteId: Int) -> Unit
+    navigateToNote: (noteId: Long) -> Unit
 ) {
     val viewModel = hiltViewModel<MainScreenViewModel>()
     val state by viewModel.state.collectAsState()
